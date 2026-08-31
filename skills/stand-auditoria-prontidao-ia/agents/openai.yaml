@@ -1,0 +1,4 @@
+interface:
+  display_name: "Prontidão para IA"
+  short_description: "Auditoria responsável antes de adoptar IA"
+  default_prompt: "Usa $stand-auditoria-prontidao-ia para avaliar se o meu stand está pronto para IA."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Visibilidade em IA"
+  short_description: "Medição de menções e citações do stand"
+  default_prompt: "Usa $stand-visibilidade-ia para medir como os motores de IA apresentam o meu stand."

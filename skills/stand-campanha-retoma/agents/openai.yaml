@@ -1,0 +1,4 @@
+interface:
+  display_name: "Campanha de retoma"
+  short_description: "Segmentação e mensagens para renovar viaturas"
+  default_prompt: "Usa $stand-campanha-retoma para criar uma campanha de retoma responsável."

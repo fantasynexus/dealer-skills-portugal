@@ -1,0 +1,4 @@
+interface:
+  display_name: "Anúncios de viaturas"
+  short_description: "Qualidade e conversão do stock publicado"
+  default_prompt: "Usa $stand-rever-anuncios-viaturas para rever uma amostra dos meus anúncios."

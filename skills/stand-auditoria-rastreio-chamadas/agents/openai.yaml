@@ -1,0 +1,4 @@
+interface:
+  display_name: "Rastreio de chamadas"
+  short_description: "Atribuição de chamadas da origem até ao CRM"
+  default_prompt: "Usa $stand-auditoria-rastreio-chamadas para auditar o call tracking do meu stand."

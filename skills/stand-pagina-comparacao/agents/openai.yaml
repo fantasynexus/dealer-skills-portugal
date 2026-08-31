@@ -1,0 +1,4 @@
+interface:
+  display_name: "Página de comparação"
+  short_description: "Comparação honesta entre dois stands"
+  default_prompt: "Usa $stand-pagina-comparacao para comparar o meu stand com um concorrente."

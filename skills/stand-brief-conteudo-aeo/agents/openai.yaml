@@ -1,0 +1,4 @@
+interface:
+  display_name: "Brief de conteúdo AEO"
+  short_description: "Briefs úteis para pesquisa e respostas de IA"
+  default_prompt: "Usa $stand-brief-conteudo-aeo para preparar um brief de conteúdo para o meu stand."

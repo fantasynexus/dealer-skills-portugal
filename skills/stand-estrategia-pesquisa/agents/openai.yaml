@@ -1,0 +1,4 @@
+interface:
+  display_name: "Estratégia de pesquisa"
+  short_description: "Plano SEO, AEO e GEO para o stand"
+  default_prompt: "Usa $stand-estrategia-pesquisa para criar o plano de pesquisa do meu stand."
