@@ -1,0 +1,4 @@
+interface:
+  display_name: "SEO multilingue"
+  short_description: "Arquitectura e conteúdo em várias línguas"
+  default_prompt: "Usa $stand-seo-multilingue para planear as versões linguísticas do site do meu stand."

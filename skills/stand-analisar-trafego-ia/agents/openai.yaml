@@ -1,0 +1,4 @@
+interface:
+  display_name: "Tráfego vindo de IA"
+  short_description: "Referências, conversões e bots de IA"
+  default_prompt: "Usa $stand-analisar-trafego-ia para medir o tráfego de IA para o meu stand."

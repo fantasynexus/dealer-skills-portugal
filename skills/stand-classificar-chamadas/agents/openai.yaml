@@ -1,0 +1,4 @@
+interface:
+  display_name: "Classificar chamadas"
+  short_description: "Categorias honestas para chamadas do stand"
+  default_prompt: "Usa $stand-classificar-chamadas para classificar estas transcrições sem inflacionar vendas."

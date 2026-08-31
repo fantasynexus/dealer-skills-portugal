@@ -1,0 +1,4 @@
+interface:
+  display_name: "Auditoria AEO e GEO"
+  short_description: "Diagnóstico de visibilidade em respostas de IA"
+  default_prompt: "Usa $stand-auditoria-aeo para auditar a presença do meu stand em motores de IA."

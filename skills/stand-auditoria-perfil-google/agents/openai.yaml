@@ -1,0 +1,4 @@
+interface:
+  display_name: "Perfil de Empresa Google"
+  short_description: "Auditoria local do perfil do stand no Google"
+  default_prompt: "Usa $stand-auditoria-perfil-google para auditar o Perfil de Empresa do meu stand."

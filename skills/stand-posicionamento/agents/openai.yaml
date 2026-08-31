@@ -1,0 +1,4 @@
+interface:
+  display_name: "Posicionamento do stand"
+  short_description: "Proposta de valor, voz e kit de marca"
+  default_prompt: "Usa $stand-posicionamento para definir o posicionamento do meu stand."

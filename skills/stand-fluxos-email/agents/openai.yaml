@@ -1,0 +1,4 @@
+interface:
+  display_name: "Fluxos de email"
+  short_description: "Automação do contacto à retenção"
+  default_prompt: "Usa $stand-fluxos-email para criar os fluxos de email do meu stand."

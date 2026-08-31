@@ -1,0 +1,4 @@
+interface:
+  display_name: "Auditoria de CTA"
+  short_description: "Melhorar contactos e formulários no site"
+  default_prompt: "Usa $stand-auditoria-cta para rever as chamadas à acção do meu site."

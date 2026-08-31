@@ -1,0 +1,4 @@
+interface:
+  display_name: "Avaliação do site"
+  short_description: "Desempenho, técnica e conversão do site"
+  default_prompt: "Usa $stand-avaliar-site para avaliar tecnicamente o site do meu stand."

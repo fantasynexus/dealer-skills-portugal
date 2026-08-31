@@ -1,0 +1,4 @@
+interface:
+  display_name: "Auditoria SEO"
+  short_description: "SEO técnico, local e de páginas de viatura"
+  default_prompt: "Usa $stand-auditoria-seo para auditar o SEO do site do meu stand."
