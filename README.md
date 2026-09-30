@@ -4,7 +4,7 @@ Biblioteca aberta de 23 skills para gestores e equipas de stands de automóveis
 em Portugal. Funcionam em agentes compatíveis com Agent Skills, incluindo
 Codex, Claude Code, Cursor e Gemini CLI.
 
-Explora o catálogo em [hub.onepilot.app/skills](https://hub.onepilot.app/skills).
+Explora o catálogo em [onepilot.app/hub/skills](https://onepilot.app/hub/skills).
 
 ## Instalar
 
