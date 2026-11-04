@@ -1,4 +1,4 @@
 interface:
   display_name: "Analisar avaliações"
-  short_description: "Temas, sentimento e respostas por área"
-  default_prompt: "Usa $stand-analisar-avaliacoes para analisar honestamente estas avaliações."
+  short_description: "Temas, sentimento e avaliações a responder"
+  default_prompt: "Usa $stand-analisar-avaliacoes para analisar honestamente estas avaliações do meu stand."

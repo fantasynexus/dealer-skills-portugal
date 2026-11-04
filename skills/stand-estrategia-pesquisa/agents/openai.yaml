@@ -1,4 +1,4 @@
 interface:
   display_name: "Estratégia de pesquisa"
-  short_description: "Plano SEO, AEO e GEO para o stand"
-  default_prompt: "Usa $stand-estrategia-pesquisa para criar o plano de pesquisa do meu stand."
+  short_description: "Plano de 90 dias para Google e IA, com triagem e encaminhamento"
+  default_prompt: "Usa $stand-estrategia-pesquisa para fazer a triagem do meu stand no Google e nos motores de IA e criar o plano de pesquisa para os próximos 90 dias."

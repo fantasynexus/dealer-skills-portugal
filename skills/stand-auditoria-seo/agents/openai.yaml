@@ -1,4 +1,4 @@
 interface:
   display_name: "Auditoria SEO"
-  short_description: "SEO técnico, local e de páginas de viatura"
-  default_prompt: "Usa $stand-auditoria-seo para auditar o SEO do site do meu stand."
+  short_description: "Indexação, procura local, stock e viaturas vendidas no Google"
+  default_prompt: "Usa $stand-auditoria-seo para auditar o SEO do site do meu stand: o que impede o stock de aparecer no Google e o que corrigir primeiro."

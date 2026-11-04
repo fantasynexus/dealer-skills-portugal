@@ -1,0 +1,26 @@
+{
+  "extrair_sinais_pagina.py": [
+    "stand-auditoria-aeo",
+    "stand-auditoria-cta",
+    "stand-auditoria-ga4-google-ads",
+    "stand-auditoria-rastreio-chamadas",
+    "stand-auditoria-seo",
+    "stand-avaliar-site",
+    "stand-escrever-anuncio",
+    "stand-rever-anuncios-viaturas",
+    "stand-seo-multilingue"
+  ],
+  "verificar_bots_ia.py": [
+    "stand-analisar-trafego-ia",
+    "stand-auditoria-aeo",
+    "stand-avaliar-site",
+    "stand-gerar-llms-txt"
+  ],
+  "validar_llms_txt.py": [
+    "stand-auditoria-aeo",
+    "stand-gerar-llms-txt"
+  ],
+  "classificar_referencias_ia.py": [
+    "stand-analisar-trafego-ia"
+  ]
+}

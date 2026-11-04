@@ -1,4 +1,4 @@
 interface:
   display_name: "Visibilidade em IA"
-  short_description: "Medição de menções e citações do stand"
-  default_prompt: "Usa $stand-visibilidade-ia para medir como os motores de IA apresentam o meu stand."
+  short_description: "Menções, concorrentes e fontes nas respostas de IA"
+  default_prompt: "Usa $stand-visibilidade-ia para medir se o ChatGPT, o Gemini e os outros assistentes de IA recomendam o meu stand face aos concorrentes da zona."

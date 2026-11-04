@@ -1,0 +1,14 @@
+# ----------------------------------------
+# Aquisição de tráfego: Origem da sessão
+# Conta: Stand Exemplo (fictício)
+# ----------------------------------------
+
+Origem da sessão,Sessões,Sessões envolvidas,Taxa de envolvimento,Eventos-chave
+google,1200,800,66.7%,40
+(direct),600,300,50%,12
+chatgpt.com,30,25,83.3%,3
+perplexity.ai,8,6,75%,1
+gemini.google.com,5,4,80%,0
+copilot.microsoft.com,2,1,50%,0
+facebook.com,90,40,44.4%,2
+standvirtual.com,70,50,71.4%,5

@@ -1,49 +1,72 @@
 ---
 name: stand-gerar-llms-txt
-description: Gerar ou rever um ficheiro llms.txt para o site de um stand automóvel português. Usar quando o gestor quer dar a agentes de IA um índice curto, factual e actualizado do stand, stock, serviços, financiamento e contactos.
+description: Gerar, rever ou validar o ficheiro llms.txt do site de um stand de automóveis em Portugal, um índice curto e factual das páginas que interessam a agentes de IA (stock, retoma, financiamento, garantia, oficina, contactos). Usar quando o gestor pede "cria o llms.txt", "o meu llms.txt está bem?", quando uma auditoria AEO o deu como ausente ou com erros, ou quando o site mudou de páginas ou de plataforma. Confirma primeiro que os bots de IA não estão bloqueados, abre cada URL antes de o incluir, valida o formato e as ligações e entrega o ficheiro pronto a publicar, com os problemas encontrados, instruções de publicação e verificação depois de publicado.
 ---
 
 # Gerar `llms.txt` para um stand
 
-Cria um índice legível por máquinas em `/<raiz>/llms.txt`. O ficheiro ajuda a descoberta; não é uma norma oficial de indexação nem garante citações.
+Cria ou revê o ficheiro `/llms.txt` na raiz do site: um resumo do stand e um
+índice das páginas estáveis mais úteis, no formato proposto em llmstxt.org.
+O ficheiro ajuda agentes que o procuram; não é uma norma oficial, nenhum
+grande motor documentou que o usa para escolher fontes, e não garante
+citações. Para diagnosticar porque é que o stand não aparece nas respostas
+de IA, usa `stand-auditoria-aeo`.
 
-## Recolha e validação
+## Antes de começar
 
-Pede o URL e os factos essenciais. Quando houver acesso web, abre cada URL antes de a incluir. Nunca inventes rotas. Dá prioridade a páginas canónicas, públicas, indexáveis e com conteúdo útil.
+Pede ao gestor, se não estiver claro no site:
 
-Confirma:
+- URL canónico do site (com ou sem `www`);
+- nome comercial, concelho e o que vende (usados, novos, marcas, segmentos);
+- serviços que existem de facto: retoma, compra de viaturas, financiamento, garantia, oficina, entrega;
+- línguas em que o site é mantido;
+- quem publica o ficheiro: o gestor (WordPress, alojamento próprio) ou o fornecedor do site.
 
-- nome, descrição factual, localização e contactos;
-- stock total ou páginas estáveis por tipo, nunca URLs efémeros de pesquisa;
-- venda, compra, retoma, financiamento, garantias e pós-venda;
-- marcas e categorias realmente trabalhadas;
-- políticas, termos e privacidade;
-- páginas noutras línguas apenas quando mantidas.
+Escolhe o modo:
 
-## Formato
+- **Criar** quando não há `/llms.txt` (404).
+- **Rever** quando existe: começa pela validação do actual e mantém o que estiver certo.
 
-Entrega Markdown simples:
+Sem acesso à web, constrói o ficheiro só com URLs que o gestor confirma, marca
+tudo como "por confirmar" e valida apenas o formato. Nunca inventes um URL
+que "deveria existir".
 
-```markdown
-# Nome do stand
+## Passos
 
-> Uma frase factual sobre o stand, localização e proposta.
+1. **Acesso.** Corre `verificar_bots_ia.py` sobre o site com `--caminho /llms.txt` e os caminhos das páginas principais. Se agentes de pesquisa ou de pedido do utilizador (Googlebot, Bingbot, OAI-SearchBot, ChatGPT-User, Claude-SearchBot, PerplexityBot) estão bloqueados, ou o robots.txt dá 5xx, pára: diz ao gestor que o `llms.txt` não resolve um site bloqueado e encaminha para `stand-auditoria-aeo`. Bloqueios só de treino (GPTBot, ClaudeBot, Google-Extended) são decisão do stand e não impedem o trabalho.
+2. **Ficheiro actual.** No modo rever, corre `validar_llms_txt.py` sobre o URL do ficheiro com `--verificar-links` e regista erros, avisos e ligações com problema.
+3. **Candidatas.** Junta páginas do menu, do rodapé e dos sitemaps (a saída do passo 1 lista os declarados). Lê [references/formato.md](references/formato.md) para o que entra e o que fica de fora.
+4. **Confirmar cada URL.** Abre-o: 200 sem redireccionamento, canónico próprio, sem `noindex`, com texto útil (não só um formulário), estável (não uma ficha de viatura nem uma pesquisa com filtros). O que falha sai da lista e vai para os problemas.
+5. **Escrever.** H1 com o nome comercial; citação com um resumo factual; texto curto só com factos confirmados; secções H2 com uma ligação por linha (`- [Retoma](https://stand-exemplo.pt/retoma): descrição`); `## Optional` para o secundário. Descrições factuais, sem preços, TAEG nem slogans.
+6. **Validar o rascunho.** Guarda-o num ficheiro e corre `validar_llms_txt.py rascunho-llms.txt --verificar-links`. Corrige todos os erros. Um aviso que fica tem a razão escrita na entrega.
+7. **Entregar** com o modelo [assets/entrega.md](assets/entrega.md).
+8. **Depois de publicado** (se o gestor pedir ou voltar com o ficheiro no ar): corre `validar_llms_txt.py` sobre o URL publicado com `--verificar-links` e `verificar_bots_ia.py` sobre esse URL com `--caminho /llms.txt --testar-acesso`.
 
-## Viaturas
-- [Usados](https://exemplo.pt/viaturas): descrição curta.
+Para um caso completo, do robots.txt ao ficheiro final, vê
+[references/exemplo.md](references/exemplo.md).
 
-## Comprar e vender
-- [Retomas](https://exemplo.pt/retomas): descrição curta.
+## Ferramentas
 
-## Serviços
-- [Oficina](https://exemplo.pt/oficina): descrição curta.
-
-## Sobre e contactos
-- [Contactos](https://exemplo.pt/contactos): morada, horário e canais.
-```
-
-Mantém 10 a 30 links de alto valor, remove duplicados, parâmetros de campanha, páginas vazias e afirmações promocionais sem prova. Explica como publicar, validar `200 text/plain`, ligar no sitemap ou rodapé e rever quando URLs ou serviços mudarem.
+- `python3 scripts/verificar_bots_ia.py https://stand-exemplo.pt --caminho /llms.txt --caminho /viaturas --caminho /retoma`: o que o robots.txt permite a cada agente de IA, por que regra, e os sitemaps declarados. Com `--testar-acesso`, pede o URL dado com o user agent de cada bot. Não prova que um bot lê o ficheiro nem que visita o site, e um 403 pode ser a CDN a recusar imitações.
+- `python3 scripts/validar_llms_txt.py <url-ou-ficheiro> --verificar-links`: H1, resumo, secções, formato das ligações, URLs absolutos, duplicados, parâmetros de campanha, número de ligações, e o estado HTTP e o content-type. Valida a forma; não verifica se as descrições são verdade nem se algum motor usa o ficheiro.
 
 ## Entrega
 
-Mostra primeiro URLs inválidos ou por confirmar, depois o ficheiro final num único bloco pronto a copiar e uma lista curta de manutenção. Não substitui `robots.txt`, sitemap, dados estruturados ou conteúdo rastreável.
+Segue [assets/entrega.md](assets/entrega.md), por esta ordem:
+
+1. o que resolver antes de publicar (bloqueios, URLs com erro, factos por confirmar);
+2. as páginas consideradas, com a decisão e o motivo;
+3. o ficheiro final num único bloco, sem comentários dentro;
+4. como publicar na plataforma do stand e a resposta esperada;
+5. os comandos de verificação depois de publicado;
+6. quando rever e quem é o responsável;
+7. o que o ficheiro não faz.
+
+## Limites
+
+- Nunca inventa URLs, serviços, marcas nem factos do stand. Uma página que falta é sugerida, não inventada.
+- Nunca inclui fichas de viaturas, pesquisas com filtros, parâmetros de campanha nem páginas com erro, `noindex` ou bloqueadas.
+- Não inclui páginas noutras línguas que ninguém mantém.
+- Não publica nem altera o site: entrega o ficheiro para o gestor ou o fornecedor publicar.
+- Não promete citações nem indexação, e não apresenta o `llms.txt` como substituto do robots.txt, do sitemap, dos dados estruturados ou do conteúdo das páginas.
+- Não mexe no robots.txt para "abrir" bots de treino que o stand bloqueou.

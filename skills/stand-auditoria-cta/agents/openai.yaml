@@ -1,4 +1,4 @@
 interface:
   display_name: "Auditoria de CTA"
-  short_description: "Melhorar contactos e formulários no site"
-  default_prompt: "Usa $stand-auditoria-cta para rever as chamadas à acção do meu site."
+  short_description: "Botões, telefone, WhatsApp e formulários que geram contactos"
+  default_prompt: "Usa $stand-auditoria-cta para rever os botões, o telefone, o WhatsApp e os formulários do site do meu stand e propor textos melhores."

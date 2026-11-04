@@ -1,4 +1,4 @@
 interface:
   display_name: "Gerador de llms.txt"
-  short_description: "Índice factual do site para agentes de IA"
-  default_prompt: "Usa $stand-gerar-llms-txt para criar o llms.txt do site do meu stand."
+  short_description: "llms.txt verificado, com URLs confirmados, pronto a publicar"
+  default_prompt: "Usa $stand-gerar-llms-txt para criar e validar o llms.txt do site do meu stand, confirmando primeiro que os bots de IA não estão bloqueados."

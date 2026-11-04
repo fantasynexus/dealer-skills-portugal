@@ -1,4 +1,4 @@
 interface:
   display_name: "SEO multilingue"
-  short_description: "Arquitectura e conteúdo em várias línguas"
-  default_prompt: "Usa $stand-seo-multilingue para planear as versões linguísticas do site do meu stand."
+  short_description: "Decidir se vale outra língua e fazê-la sem estragar o português"
+  default_prompt: "Usa $stand-seo-multilingue para ver se vale a pena ter o site do meu stand em inglês ou noutra língua e, se valer, como fazê-lo bem."

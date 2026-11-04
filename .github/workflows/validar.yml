@@ -1,0 +1,24 @@
+name: Validar
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validar:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # 3.9 é o python3 que vem com o macOS: os scripts têm de correr lá.
+        python: ['3.9', '3.13']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - name: Estrutura, ligações, copy e cópias dos scripts
+        run: uv run --no-project --python ${{ matrix.python }} python ferramentas/validar.py
+      - name: Testes dos scripts
+        run: uv run --no-project --python ${{ matrix.python }} python -m unittest discover -s ferramentas/testes

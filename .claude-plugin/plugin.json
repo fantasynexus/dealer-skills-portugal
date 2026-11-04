@@ -1,0 +1,14 @@
+{
+  "name": "stands",
+  "description": "Skills para gestores e equipas de stands em Portugal: o dia-a-dia (anúncios, leads, avaliações, redes sociais) e auditorias de SEO, IA, site, medição e reputação. PT-PT, euros, RGPD.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Onepilot",
+    "url": "https://onepilot.app"
+  },
+  "homepage": "https://onepilot.app/hub/skills",
+  "repository": "https://github.com/fantasynexus/dealer-skills-portugal",
+  "license": "MIT",
+  "keywords": ["stand", "automóveis", "usados", "portugal", "standvirtual", "seo", "aeo", "geo", "reviews", "leads"],
+  "skills": ["./skills"]
+}

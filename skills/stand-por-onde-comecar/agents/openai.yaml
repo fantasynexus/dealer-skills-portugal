@@ -1,0 +1,4 @@
+interface:
+  display_name: "Por onde começar"
+  short_description: "Escolhe a skill certa para o que o stand quer resolver"
+  default_prompt: "Usa $stand-por-onde-comecar para me dizer o que devo fazer primeiro no meu stand."

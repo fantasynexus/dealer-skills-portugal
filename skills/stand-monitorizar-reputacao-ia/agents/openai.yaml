@@ -1,4 +1,4 @@
 interface:
   display_name: "Reputação em IA"
-  short_description: "Erros e enquadramento do stand em motores de IA"
-  default_prompt: "Usa $stand-monitorizar-reputacao-ia para verificar o que a IA diz sobre o meu stand."
+  short_description: "O que a IA diz do stand e se é verdade"
+  default_prompt: "Usa $stand-monitorizar-reputacao-ia para verificar se o que o ChatGPT, o Gemini e os outros assistentes de IA dizem sobre o meu stand está correcto e actual."
