@@ -1,0 +1,21 @@
+# Stand Exemplo
+
+> Stand de usados em Leiria (fictício), com retoma, financiamento e oficina própria.
+
+## Viaturas
+- [Usados](https://stand-exemplo.pt/viaturas): todo o stock disponível.
+- [Eléctricos](https://stand-exemplo.pt/viaturas/electricos): usados eléctricos e híbridos plug-in.
+- [Comerciais](https://stand-exemplo.pt/viaturas/comerciais): comerciais ligeiros.
+
+## Comprar e vender
+- [Retoma](https://stand-exemplo.pt/retoma): como avaliamos a sua viatura.
+- [Financiamento](https://stand-exemplo.pt/financiamento): condições e simulação.
+- [Garantia](https://stand-exemplo.pt/garantia): o que cobre e por quanto tempo.
+
+## Serviços
+- [Oficina](https://stand-exemplo.pt/oficina): revisões e reparações.
+- [Preparação](https://stand-exemplo.pt/preparacao): o que fazemos antes de entregar.
+
+## Sobre e contactos
+- [Sobre](https://stand-exemplo.pt/sobre): história e equipa.
+- [Contactos](https://stand-exemplo.pt/contactos): morada, horário e canais.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Responder a avaliações"
+  short_description: "Resposta pública e plano interno, sem expor o cliente"
+  default_prompt: "Usa $stand-responder-avaliacoes para responder a esta avaliação do meu stand no Google."

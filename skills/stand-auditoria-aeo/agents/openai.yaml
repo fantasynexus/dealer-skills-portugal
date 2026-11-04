@@ -1,4 +1,4 @@
 interface:
   display_name: "Auditoria AEO e GEO"
-  short_description: "Diagnóstico de visibilidade em respostas de IA"
-  default_prompt: "Usa $stand-auditoria-aeo para auditar a presença do meu stand em motores de IA."
+  short_description: "Porque é que a IA não cita o stand, com provas e plano"
+  default_prompt: "Usa $stand-auditoria-aeo para auditar porque é que o ChatGPT, o Gemini e o Perplexity não mencionam o meu stand, com provas e um plano de correcções."

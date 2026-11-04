@@ -1,0 +1,16 @@
+# robots.txt de um stand fictício
+User-agent: GPTBot
+Disallow: /
+
+User-agent: Google-Extended
+User-agent: CCBot
+Disallow: /
+
+User-agent: *
+Crawl-delay: 5
+Disallow: /admin
+Allow: /admin/publico
+Disallow: /*?filtro=
+Disallow: /*.pdf$
+
+Sitemap: https://stand-exemplo.pt/sitemap.xml

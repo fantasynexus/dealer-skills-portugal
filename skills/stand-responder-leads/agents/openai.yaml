@@ -1,0 +1,4 @@
+interface:
+  display_name: "Responder a leads"
+  short_description: "Primeira resposta, qualificação e seguimento de contactos"
+  default_prompt: "Usa $stand-responder-leads para responder a este contacto e preparar o seguimento."

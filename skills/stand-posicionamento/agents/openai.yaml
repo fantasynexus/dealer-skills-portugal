@@ -1,4 +1,4 @@
 interface:
   display_name: "Posicionamento do stand"
-  short_description: "Proposta de valor, voz e kit de marca"
-  default_prompt: "Usa $stand-posicionamento para definir o posicionamento do meu stand."
+  short_description: "Proposta de valor com prova, voz e kit de linguagem em PT-PT"
+  default_prompt: "Usa $stand-posicionamento para descobrir o que diferencia o meu stand, com provas, e criar a proposta de valor, a voz e o kit de linguagem para a equipa."

@@ -1,4 +1,4 @@
 interface:
   display_name: "Anúncios de viaturas"
-  short_description: "Qualidade e conversão do stock publicado"
-  default_prompt: "Usa $stand-rever-anuncios-viaturas para rever uma amostra dos meus anúncios."
+  short_description: "Nota por anúncio no site e nos portais, com fotos em falta"
+  default_prompt: "Usa $stand-rever-anuncios-viaturas para rever uma amostra dos anúncios do meu stand no site e no Standvirtual, incluindo os carros parados há mais tempo."

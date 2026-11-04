@@ -1,0 +1,4 @@
+interface:
+  display_name: "Escrever anúncio"
+  short_description: "Anúncio de uma viatura para portais e site, sem inventar"
+  default_prompt: "Usa $stand-escrever-anuncio para escrever o anúncio desta viatura para o Standvirtual, o OLX e o site do stand."

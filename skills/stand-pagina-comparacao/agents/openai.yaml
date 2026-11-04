@@ -1,4 +1,4 @@
 interface:
   display_name: "Página de comparação"
-  short_description: "Comparação honesta entre dois stands"
-  default_prompt: "Usa $stand-pagina-comparacao para comparar o meu stand com um concorrente."
+  short_description: "Modelos, opções de compra ou stands, com fontes datadas"
+  default_prompt: "Usa $stand-pagina-comparacao para criar uma página que ajude os meus clientes a escolher entre um eléctrico e um híbrido usado."

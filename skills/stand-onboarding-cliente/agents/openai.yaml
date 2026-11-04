@@ -1,4 +1,4 @@
 interface:
   display_name: "Novo cliente, 90 dias"
-  short_description: "Entrega, acompanhamento e passagem à oficina"
-  default_prompt: "Usa $stand-onboarding-cliente para desenhar os primeiros 90 dias após a venda."
+  short_description: "Entrega, documentos, garantia, oficina e avaliação"
+  default_prompt: "Usa $stand-onboarding-cliente para desenhar a entrega e os primeiros 90 dias depois da venda no meu stand."

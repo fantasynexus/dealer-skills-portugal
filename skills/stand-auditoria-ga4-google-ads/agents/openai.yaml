@@ -1,4 +1,4 @@
 interface:
   display_name: "GA4 e Google Ads"
-  short_description: "Auditoria de conversões, CRM e atribuição"
-  default_prompt: "Usa $stand-auditoria-ga4-google-ads para reconciliar GA4, Ads e CRM do meu stand."
+  short_description: "Reconcilia GA4, Ads e CRM etapa a etapa"
+  default_prompt: "Usa $stand-auditoria-ga4-google-ads para ver porque é que os leads do GA4 e do Google Ads não batem com o CRM do meu stand e o que corrigir primeiro."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Redes sociais"
+  short_description: "Publicações, guiões de vídeo curto e calendário semanal"
+  default_prompt: "Usa $stand-publicar-redes-sociais para preparar as publicações desta semana do meu stand."
