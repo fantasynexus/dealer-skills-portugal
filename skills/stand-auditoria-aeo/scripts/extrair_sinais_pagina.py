@@ -81,6 +81,7 @@ class Recolha(HTMLParser):
         self.meta = {}
         self.open_graph = {}
         self.canonico = None
+        self.base_href = None
         self.hreflang = []
         self.h1 = []
         self._h1_profundidade = 0
@@ -111,6 +112,8 @@ class Recolha(HTMLParser):
                 self.meta[nome] = a.get('content', '')
             if propriedade.startswith('og:'):
                 self.open_graph[propriedade[3:]] = a.get('content', '')
+        elif tag == 'base' and a.get('href') and self.base_href is None:
+            self.base_href = a['href']
         elif tag == 'link':
             rel = (a.get('rel') or '').lower().split()
             if 'canonical' in rel:
@@ -299,17 +302,19 @@ def analisar_html(html, url_base=None):
         elif re.search(r'wa\.me/|api\.whatsapp\.com/send|whatsapp://', baixo):
             whatsapp.add(href)
 
-    dominio_pagina = _dominio(url_base) if url_base else ''
+    # Os URLs relativos resolvem-se contra o <base href>, se a página o tiver.
+    base = urljoin(url_base or '', recolha.base_href) if recolha.base_href else url_base
+    dominio_pagina = _dominio(url_base or base or '')
     terceiros = set()
     for src in recolha.scripts_src:
-        absoluto = urljoin(url_base or '', src)
+        absoluto = urljoin(base or '', src)
         dominio = _dominio(absoluto)
         if dominio and dominio != dominio_pagina and not dominio.endswith('.' + dominio_pagina):
             terceiros.add(dominio)
 
     for formulario in recolha.formularios:
-        if url_base and formulario['accao']:
-            formulario['accao'] = urljoin(url_base, formulario['accao'])
+        if base and formulario['accao']:
+            formulario['accao'] = urljoin(base, formulario['accao'])
         if formulario['caixas_pre_seleccionadas']:
             avisos.append('Formulário com caixas pré-seleccionadas: confirmar se alguma é consentimento.')
 
@@ -324,7 +329,7 @@ def analisar_html(html, url_base=None):
         'titulo': ' '.join(recolha.titulo.split()),
         'meta_descricao': recolha.meta.get('description'),
         'meta_robots': recolha.meta.get('robots'),
-        'canonico': urljoin(url_base, recolha.canonico) if url_base and recolha.canonico else recolha.canonico,
+        'canonico': urljoin(base, recolha.canonico) if base and recolha.canonico else recolha.canonico,
         'idioma': recolha.idioma,
         'hreflang': recolha.hreflang,
         'h1': recolha.h1,

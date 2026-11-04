@@ -24,6 +24,7 @@ import io
 import json
 import re
 import sys
+from urllib.parse import urlparse
 
 LISTA_REVISTA_EM = '2026-11'
 
@@ -54,10 +55,20 @@ def regex_ga4():
     return '.*(' + '|'.join(dominios) + ').*'
 
 
-def classificar(origem):
+def _host(origem):
+    """O host de um referenciador (`https://chatgpt.com/c/1`) ou de uma origem
+    do GA4 (`chatgpt.com / referral`). Só o host conta: um caminho com
+    `chatgpt.com` noutro domínio não é tráfego do ChatGPT."""
     texto = (origem or '').strip().lower()
+    if '://' in texto:
+        return urlparse(texto).hostname or ''
+    return texto.split(' / ')[0].split('/')[0].strip()
+
+
+def classificar(origem):
+    host = _host(origem)
     for motor, dominios in MOTORES:
-        if any(re.search(r'(^|[^a-z0-9-])' + re.escape(d) + r'($|[^a-z0-9-])', texto) for d in dominios):
+        if any(host == d or host.endswith('.' + d) for d in dominios):
             return motor
     return None
 
@@ -68,6 +79,11 @@ def _numero(valor):
         return None
     if ',' in texto and '.' in texto:
         texto = texto.replace('.', '').replace(',', '.') if texto.rfind(',') > texto.rfind('.') else texto.replace(',', '')
+    elif re.fullmatch(r'\d{1,3}([.,]\d{3})+', texto):
+        # `1.234` ou `1,234` com grupos de três: separador de milhares, como nas
+        # exportações em português. Um decimal com três casas lia-se mal, mas
+        # nas contagens do GA4 não aparece.
+        texto = re.sub(r'[.,]', '', texto)
     elif ',' in texto:
         texto = texto.replace(',', '.')
     try:
@@ -114,6 +130,10 @@ def analisar(texto, coluna_origem=None, metricas=None):
         raise ValueError(f'Não encontrei a coluna de origem. Colunas: {", ".join(colunas)}. Usa --coluna-origem.')
     if metricas is None:
         metricas = [c for c in colunas if c != coluna_origem and _somavel(c, linhas)]
+    else:
+        em_falta = [m for m in metricas if m not in colunas]
+        if em_falta:
+            raise ValueError(f'Colunas inexistentes: {", ".join(em_falta)}. Colunas: {", ".join(colunas)}.')
 
     motores, outras = {}, {}
     totais = {m: 0.0 for m in metricas}

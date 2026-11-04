@@ -24,7 +24,7 @@ import json
 import re
 import sys
 from urllib.error import HTTPError, URLError
-from urllib.parse import urljoin
+from urllib.parse import quote, urljoin
 from urllib.request import Request, urlopen
 
 LISTA_REVISTA_EM = '2026-11'
@@ -92,8 +92,16 @@ def regras_para(grupos, token):
     return gerais, '*' if any('*' in g['agentes'] for g in grupos) else None
 
 
+def normalizar(caminho):
+    """Codifica em percentagem o que não é ASCII e põe os escapes em maiúsculas,
+    para `/café` e `/caf%c3%a9` serem o mesmo caminho (RFC 9309, 2.2.2)."""
+    codificado = quote(caminho, safe="/:@!$&'()*+,;=-._~?%#[]")
+    return re.sub(r'%[0-9a-f]{2}', lambda m: m.group(0).upper(), codificado)
+
+
 @functools.lru_cache(maxsize=None)
 def _padrao(caminho_regra):
+    caminho_regra = normalizar(caminho_regra)
     ancorado = caminho_regra.endswith('$')
     base = caminho_regra[:-1] if ancorado else caminho_regra
     expressao = '.*'.join(re.escape(parte) for parte in base.split('*'))
@@ -102,10 +110,13 @@ def _padrao(caminho_regra):
 
 def decidir(regras, caminho):
     """Devolve (permitido, regra) segundo o RFC 9309."""
+    caminho = normalizar(caminho)
+    if caminho == '/robots.txt':
+        return True, 'implícita: o RFC 9309 permite sempre /robots.txt'
     melhor = None
     for tipo, valor in regras:
         if _padrao(valor).match(caminho):
-            chave = (len(valor), tipo == 'allow')
+            chave = (len(normalizar(valor)), tipo == 'allow')
             if melhor is None or chave > melhor[0]:
                 melhor = (chave, tipo, valor)
     if melhor is None:

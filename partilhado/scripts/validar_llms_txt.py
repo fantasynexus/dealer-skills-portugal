@@ -107,15 +107,12 @@ def validar_texto(texto):
 
 
 def _estado(url):
-    for metodo in ('HEAD', 'GET'):
-        try:
-            resposta = urlopen(Request(url, method=metodo, headers={'User-Agent': UA}), timeout=15)
-            return resposta.getcode(), resposta.geturl()
-        except HTTPError as erro:
-            if metodo == 'HEAD' and erro.getcode() in (403, 405, 501):
-                continue
-            return erro.getcode(), url
-    return None, url
+    # GET e não HEAD: há servidores que respondem 200 a um HEAD e 404 à página.
+    try:
+        resposta = urlopen(Request(url, headers={'User-Agent': UA}), timeout=15)
+        return resposta.getcode(), resposta.geturl()
+    except HTTPError as erro:
+        return erro.getcode(), url
 
 
 def verificar_links(urls):

@@ -73,6 +73,15 @@ class ExtrairSinaisPagina(unittest.TestCase):
         self.assertEqual(formulario['caixas_pre_seleccionadas'], ['marketing'])
         self.assertEqual(self.r['imagens'], {'total': 3, 'sem_alt': 1, 'alt_vazio': 1})
 
+    def test_base_href_resolve_os_relativos(self):
+        modulo = carregar('extrair_sinais_pagina')
+        html = ('<html><head><base href="https://stand-exemplo.pt/catalogo/">'
+                '<link rel="canonical" href="carro"></head>'
+                '<body><form action="enviar"></form></body></html>')
+        r = modulo.analisar_html(html, 'https://stand-exemplo.pt/x/y')
+        self.assertEqual(r['canonico'], 'https://stand-exemplo.pt/catalogo/carro')
+        self.assertEqual(r['formularios'][0]['accao'], 'https://stand-exemplo.pt/catalogo/enviar')
+
     def test_terceiros_exclui_o_proprio_dominio(self):
         self.assertEqual(self.r['scripts_terceiros'], ['consent.cookiebot.com', 'googletagmanager.com'])
 
@@ -112,6 +121,14 @@ class VerificarBotsIa(unittest.TestCase):
 
     def test_empate_favorece_allow(self):
         self.assertEqual(self.m.decidir([('disallow', '/a'), ('allow', '/a')], '/a'), (True, 'Allow: /a'))
+
+    def test_robots_txt_sempre_permitido(self):
+        self.assertEqual(self.estado('GPTBot', '/robots.txt')[0], 'permitido')
+
+    def test_codificacao_percentual(self):
+        regras = [('disallow', '/usados/caf%c3%a9')]
+        self.assertFalse(self.m.decidir(regras, '/usados/café')[0])
+        self.assertFalse(self.m.decidir([('disallow', '/usados/café')], '/usados/caf%C3%A9')[0])
 
     def test_sitemaps(self):
         _, sitemaps = self.m.avaliar(self.texto, ['/'])
@@ -182,6 +199,22 @@ class ClassificarReferenciasIa(unittest.TestCase):
         for origem in ('chatgpt.com', 'perplexity.ai', 'gemini.google.com', 'claude.ai', 'copilot.microsoft.com'):
             self.assertRegex(origem, padrao)
         self.assertNotRegex('google', padrao)
+
+    def test_so_o_host_conta(self):
+        self.assertEqual(self.m.classificar('https://chatgpt.com/c/123'), 'ChatGPT')
+        self.assertEqual(self.m.classificar('chatgpt.com / referral'), 'ChatGPT')
+        self.assertEqual(self.m.classificar('chatgpt'), 'ChatGPT')
+        self.assertIsNone(self.m.classificar('https://exemplo.pt/artigo/chatgpt.com'))
+
+    def test_separador_de_milhares(self):
+        self.assertEqual(self.m._numero('1.234'), 1234)
+        self.assertEqual(self.m._numero('1,234'), 1234)
+        self.assertEqual(self.m._numero('1.234,5'), 1234.5)
+        self.assertEqual(self.m._numero('12,5'), 12.5)
+
+    def test_metrica_inexistente(self):
+        with self.assertRaises(ValueError):
+            self.m.analisar((FIXTURES / 'ga4.csv').read_text(encoding='utf-8'), metricas=['Sessoes'])
 
     def test_coluna_inexistente(self):
         with self.assertRaises(ValueError):
